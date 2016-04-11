@@ -106,7 +106,7 @@ function util#pmenu#open(menu_entries, callback, mode)
 	exec 'autocmd PMENU CompleteDone * call feedkeys("\<esc>' . escape(s:map_trigger, "<") . '")'
 	augroup END
 
-	exec "nnoremap " . s:map_trigger . " :call <sid>complete_done()<cr>"
+	exec "nnoremap <silent> " . s:map_trigger . " :call <sid>complete_done()<cr>"
 
 	if stridx(a:mode, "i") == -1
 		return "\<insert>\<C-X>\<C-O>"
