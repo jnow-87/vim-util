@@ -74,3 +74,23 @@ function util#window#focus_file(file, line, foldopen)
 	return 1
 endfunction
 "}}}
+
+let s:win_width = {}
+
+"{{{
+" \brief	toggle window width maximisation
+function util#window#expand()
+	" generate name using buffername and tabpage number
+	let name = bufname('%') . "_" . tabpagenr()
+
+	if has_key(s:win_width, name)
+		" if an original size is saved, restore it and remove the entry
+		exec "vert resize " . s:win_width[name]
+		call remove(s:win_width, name)
+	else
+		" if no original size is saved, store current size and maximise window
+		let s:win_width[name] = winwidth(0)
+		vert resize
+	endif
+endfunction
+"}}}
