@@ -1,3 +1,9 @@
+" get own script ID
+nmap <c-f11><c-f12><c-f13> <sid>
+let s:sid = "<SNR>" . maparg("<c-f11><c-f12><c-f13>", "n", 0, 1).sid . "_"
+nunmap <c-f11><c-f12><c-f13>
+
+
 """"
 "" local variables
 """""
@@ -11,7 +17,7 @@ let s:pos = []
 "}}}
 
 """"
-"" helper functions
+"" local functions
 """"
 "{{{
 " \brief	handle omni-compeltion triggered within 'pmenu#open'
@@ -68,7 +74,7 @@ endfunction
 "}}}
 
 """"
-"" main functions
+"" global functions
 """"
 "{{{
 " \brief	generate and trigger popup-menu
@@ -106,7 +112,7 @@ function util#pmenu#open(menu_entries, callback, mode)
 	exec 'autocmd PMENU CompleteDone * call feedkeys("\<esc>' . escape(s:map_trigger, "<") . '")'
 	augroup END
 
-	exec "nnoremap <silent> " . s:map_trigger . " :call <sid>complete_done()<cr>"
+	call util#map#n(s:map_trigger, ":call " . s:sid . "complete_done()<cr>", "")
 
 	if stridx(a:mode, "i") == -1
 		return "\<insert>\<C-X>\<C-O>"

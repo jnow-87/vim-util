@@ -1,3 +1,6 @@
+""""
+"" global functions
+""""
 "{{{
 " \brief	focus given line in current buffer
 "
