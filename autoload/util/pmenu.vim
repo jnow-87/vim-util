@@ -94,9 +94,10 @@ endfunction
 " 								"i"	inset mode
 " 								"v"	visual mode
 " 								"s"	selection mode
+" \param 	selected		menu entry to set the cursor to
 "
 " \return	string to trigger omni-completion
-function util#pmenu#open(menu_entries, callback, mode)
+function util#pmenu#open(menu_entries, callback, mode, selected=0)
 	let s:menu_entries = a:menu_entries
 	let s:callback = a:callback
 
@@ -114,10 +115,13 @@ function util#pmenu#open(menu_entries, callback, mode)
 
 	call util#map#n(s:map_trigger, ":call " . s:sid . "complete_done()<cr>", "")
 
+	let trigger = "\<c-x>\<c-o>"
+	let trigger .= repeat("\<down>", a:selected)
+
 	if stridx(a:mode, "i") == -1
-		return "\<insert>\<C-X>\<C-O>"
+		return "\<insert>". trigger
 	endif
 
-	return "\<C-X>\<C-O>"
+	return trigger
 endfunction
 "}}}
