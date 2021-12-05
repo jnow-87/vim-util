@@ -99,3 +99,13 @@ function util#map#nvi(lhs, rhs, mode)
 	call util#map#i(a:lhs, a:rhs, a:mode)
 endfunction
 "}}}
+
+"{{{
+" \brief	escape the given key, e.g. <tab> to \<tab>
+"
+" \param	key		string containing the key to escape
+function util#map#escape(key)
+	execute "let l:ekey = \"" . escape(a:key, "<") . "\""
+	return l:ekey
+endfunction
+"}}}
