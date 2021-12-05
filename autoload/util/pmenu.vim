@@ -102,7 +102,7 @@ function util#pmenu#open(menu_entries, callback, mode, selected=0)
 	let s:callback = a:callback
 
 	if len(a:menu_entries) == 0 || a:callback == ""
-		return ""
+		return "\<esc>"
 	endif
 
 	let s:pos = getpos('.')
