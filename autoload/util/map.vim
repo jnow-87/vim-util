@@ -48,7 +48,7 @@ endfunction
 """"
 "{{{
 " create silent normal mode mapping
-function util#map#n(lhs, rhs, mode)
+function util#map#n(lhs, rhs, mode="")
 	let [ mode, entry, exit ] = s:get_param(a:mode)
 
 	exec 'nnoremap ' . mode . ' ' . a:lhs . ' ' . a:rhs
@@ -57,7 +57,7 @@ endfunction
 
 "{{{
 " create silent insert mode mapping
-function util#map#i(lhs, rhs, mode)
+function util#map#i(lhs, rhs, mode="")
 	let [ mode, entry, exit ] = s:get_param(a:mode)
 
 	exec 'inoremap ' . mode . ' ' . a:lhs . ' ' . entry . a:rhs . exit
@@ -67,7 +67,7 @@ endfunction
 
 "{{{
 " create silent visual mode mapping
-function util#map#v(lhs, rhs, mode)
+function util#map#v(lhs, rhs, mode="")
 	let [ mode, entry, exit ] = s:get_param(a:mode)
 
 	exec 'vnoremap ' . mode . ' ' . a:lhs . ' ' . a:rhs
@@ -77,7 +77,7 @@ endfunction
 
 "{{{
 " create silent normal and insert mode mapping
-function util#map#ni(lhs, rhs, mode)
+function util#map#ni(lhs, rhs, mode="")
 	call util#map#n(a:lhs, a:rhs, a:mode)
 	call util#map#i(a:lhs, a:rhs, a:mode)
 endfunction
@@ -85,7 +85,7 @@ endfunction
 
 "{{{
 " create silent normal and visual mode mapping
-function util#map#nv(lhs, rhs, mode)
+function util#map#nv(lhs, rhs, mode="")
 	call util#map#n(a:lhs, a:rhs, a:mode)
 	call util#map#v(a:lhs, a:rhs, a:mode)
 endfunction
@@ -93,7 +93,7 @@ endfunction
 
 "{{{
 " create silent normal and visual mode mapping
-function util#map#nvi(lhs, rhs, mode)
+function util#map#nvi(lhs, rhs, mode="")
 	call util#map#n(a:lhs, a:rhs, a:mode)
 	call util#map#v(a:lhs, a:rhs, a:mode)
 	call util#map#i(a:lhs, a:rhs, a:mode)
