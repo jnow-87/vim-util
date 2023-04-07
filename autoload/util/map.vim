@@ -67,11 +67,15 @@ endfunction
 
 "{{{
 " create silent visual mode mapping
-function util#map#v(lhs, rhs, mode="")
+function util#map#v(lhs, rhs, mode="", no_smap=0)
 	let [ mode, entry, exit ] = s:get_param(a:mode)
 
 	exec 'vnoremap ' . mode . ' ' . a:lhs . ' ' . a:rhs
 	exec 'snoremap ' . mode . ' ' . a:lhs . ' ' . a:rhs
+
+	if a:no_smap
+		exec 'sunmap ' . a:lhs
+	endif
 endfunction
 "}}}
 
