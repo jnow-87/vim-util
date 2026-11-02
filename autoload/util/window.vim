@@ -97,3 +97,15 @@ function util#window#expand()
 	endif
 endfunction
 "}}}
+
+"{{{
+" \brief	close window if it is the last in the current tabpage
+function util#window#close_if_last()
+	if winnr("$") == 1
+		" use a timer instead of directly closing the window to allow the
+		" function to be used in the context of an autocmd which, otherwise
+		" triggers E1312 since a change in vim 9
+		call timer_start(0, {-> execute('q', 'silent!') })
+	endif
+endfunction
+"}}}
